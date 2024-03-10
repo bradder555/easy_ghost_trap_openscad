@@ -43,15 +43,15 @@ module ghost_trap_body(){
 }
 
 module ghost_trap_flap(){
-  cube([41,170,4], center=true);
-  translate([(41)/2, 0,0])
+  cube([41.5,168,4], center=true);
+  translate([(40)/2, 0,0])
   rotate([90,0,0])
   cylinder(h=179, r=2, center=true, $fn=40);
 }
 
 module ghost_trap_end_half(){
   
-  translate([29,0,0]){
+  translate([29.5,0,0]){
     difference(){
       // beveled edge
       linear_extrude(80, center=true)
@@ -63,17 +63,17 @@ module ghost_trap_end_half(){
     }
     // side
     translate([-12,9,-5])
-    cube([34, 18, 70], center=true);
+    cube([35, 18, 70], center=true);
   }
 }
 
 module ghost_trap_end_display(){
-  w__ = 57;
+  w__ = 59;
    hull(){
      translate([0,0,0])cube([w__,2,2], center=true);
      translate([0,-23,17])cube([w__,2,2], center=true);
      translate([0,-23,37])cube([w__,2,2], center=true);
-     translate([0,0,20])cube([w__,2,2], center=true);
+     translate([0,0,25])cube([w__,2,2], center=true);
    }   
 }
 
@@ -100,16 +100,18 @@ module caddy_wall(){
 }
 
 module caddy(){
-    caddy_wall();
-    translate([0,96 + wall_thickness,0])
-    caddy_wall();
+  translate([0,-1,0])
+  caddy_wall();
   
-    translate([-2,-wall_thickness,-wall_thickness])
-    cube([202,96+2*wall_thickness,wall_thickness]);
+  translate([0,97 + wall_thickness,0])
+  caddy_wall();
   
-    translate([wall_thickness,-wall_thickness,-wall_thickness])
-    rotate([0,-90,0])
-    cube([70,96+2*wall_thickness,wall_thickness]);
+  translate([-2,-wall_thickness-1,-wall_thickness])
+  cube([202,98+2*wall_thickness,wall_thickness]);
+  
+  translate([wall_thickness,-wall_thickness,-wall_thickness])
+  rotate([0,-90,0])
+  cube([70,97+2*wall_thickness,wall_thickness]);
 }
 
 module caddy_block(){
@@ -148,30 +150,24 @@ module caddy_end(){
     caddy_handle();
 }
 
-ghost_trap_end();
-
 
 /*
-mirror([1,0,0])
-caddy_end();
-caddy();
-
-
-ghost_trap_body();
-
 color("blue",0.5)
-translate([20.5,2,37.5])
+translate([21,2,37.5])
 ghost_trap_flap();
 
 mirror([1,0,0])
-translate([20.5,2,37.5])
+translate([21,2,37.5])
 ghost_trap_flap();
-
 
 translate([0,211/2,5])
 mirror([0,1,0])
 ghost_trap_end();
-
 */
 
+ghost_trap_flap();
 
+//ghost_trap_body();
+
+//caddy();
+//caddy_end();
